@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+	<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.0">
+		<PrivateAssets>all</PrivateAssets>
+		<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	</PackageReference>
+	<PackageReference Include="MediatR" Version="12.2.0" />
+	<PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.5.0" />
+	<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+	<PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.0-preview4.23342.2" />
+	<PackageReference Include="Serilog.AspNetCore" Version="8.0.0" />
+	<PackageReference Include="Serilog" Version="3.1.1" />
+	<PackageReference Include="Serilog.Extensions.Logging" Version="8.0.0" />
+	<PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+	<PackageReference Include="Serilog.Settings.Configuration" Version="8.0.0" />
+</ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CCORE.BookCatalog.Application\CCORE.BookCatalog.Application.csproj" />
+    <ProjectReference Include="..\CCORE.BookCatalog.Identity\CCORE.BookCatalog.Identity.csproj" />
+    <ProjectReference Include="..\CCORE.BookCatalog.Persistence\CCORE.BookCatalog.Persistence.csproj" />
+  </ItemGroup>
+	
+</Project>
