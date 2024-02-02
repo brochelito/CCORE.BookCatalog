@@ -44,15 +44,7 @@ namespace CCORE.BookCatalog.Api
         }
 
         public static WebApplication ConfigurePipeline(this WebApplication app)
-        {
-            app.MapIdentityApi<ApplicationUser>();
-
-            app.MapPost("/Logout", async (ClaimsPrincipal user, SignInManager<ApplicationUser> signInManager) =>
-            {
-                await signInManager.SignOutAsync();
-                return TypedResults.Ok();
-            });
-
+        {           
             app.UseCors("open");
 
             if (app.Environment.IsDevelopment())
@@ -82,8 +74,7 @@ namespace CCORE.BookCatalog.Api
                 }
             }
             catch (Exception ex)
-            {
-                //add logging here later on
+            {              
             }
         }
     }

@@ -6,6 +6,7 @@ using CCORE.BookCatalog.Application.Features.Books.Commands.UpdateBook;
 using CCORE.BookCatalog.Application.Features.Books.Queries.GetBookDetail;
 using CCORE.BookCatalog.Application.Features.Books.Queries.GetBooksList;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CCORE.BookCatalog.Api.Controllers
@@ -24,6 +25,7 @@ namespace CCORE.BookCatalog.Api.Controllers
         [HttpGet(Name = "GetAllBooks")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesDefaultResponseType]
+        [Authorize]
         public async Task<ActionResult<List<BookListVm>>> GetAllBooks([FromQuery] GetBooksListQueryParameter queryParameter)
         {
             var result = await _mediator.Send(new GetBooksListQuery { QueryParameter = queryParameter });
@@ -31,6 +33,7 @@ namespace CCORE.BookCatalog.Api.Controllers
         }
 
         [HttpGet("{id}", Name = "GetBookById")]
+        [Authorize]
         public async Task<ActionResult<BookDetailVm>> GetBookById(Guid id)
         {
             var getBookDetailQuery = new GetBookDetailQuery() { Id = id };
@@ -38,6 +41,7 @@ namespace CCORE.BookCatalog.Api.Controllers
         }
 
         [HttpPost(Name = "AddBook")]
+        [Authorize]
         public async Task<ActionResult<Guid>> Create([FromBody] CreateBookCommand createBookCommand)
         {
             var id = await _mediator.Send(createBookCommand);
@@ -48,6 +52,7 @@ namespace CCORE.BookCatalog.Api.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
+        [Authorize]
         public async Task<ActionResult> Update([FromBody] UpdateBookCommand updateBookCommand)
         {
             await _mediator.Send(updateBookCommand);
@@ -58,6 +63,7 @@ namespace CCORE.BookCatalog.Api.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
+        [Authorize]
         public async Task<ActionResult> Delete(Guid id)
         {
             var deleteBookCommand = new DeleteBookCommand() { Id = id };

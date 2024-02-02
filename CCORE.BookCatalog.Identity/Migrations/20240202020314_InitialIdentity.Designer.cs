@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CCORE.BookCatalog.Identity.Migrations
 {
     [DbContext(typeof(BookCatalogIdentityDbContext))]
-    [Migration("20240201042137_InitialIdentity")]
+    [Migration("20240202020314_InitialIdentity")]
     partial class InitialIdentity
     {
         /// <inheritdoc />
@@ -43,6 +43,14 @@ namespace CCORE.BookCatalog.Identity.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
