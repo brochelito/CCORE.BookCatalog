@@ -55,6 +55,5 @@ namespace CCORE.BookCatalog.Persistence.Repositories
             return await allBooks.ToListAsync();
 
         }
-
     }
 }

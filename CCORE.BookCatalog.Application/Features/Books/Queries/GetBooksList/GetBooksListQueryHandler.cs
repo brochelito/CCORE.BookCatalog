@@ -18,8 +18,15 @@ namespace CCORE.BookCatalog.Application.Features.Books.Queries.GetBooksList
 
         public async Task<List<BookListVm>> Handle(GetBooksListQuery request, CancellationToken cancellationToken)
         {
-            var allBooks = (await _bookRepository.ListAllAsync(request)).OrderBy(x => x.PublishDateUtc);
-            return _mapper.Map<List<BookListVm>>(allBooks);
+            try
+            {
+                var allBooks = (await _bookRepository.ListAllAsync(request)).OrderBy(x => x.PublishDateUtc);
+                return _mapper.Map<List<BookListVm>>(allBooks);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }           
         }
     }
 }
